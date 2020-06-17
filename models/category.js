@@ -6,6 +6,7 @@ const categoryModel = Schema({
   recipes: [
     {
       type: Schema.Types.ObjectId,
+      ref: "Recipe",
     },
   ],
 });

@@ -33,6 +33,8 @@ const postRecipe = async (req, res) => {
       let category = await Category.findOne({ categoryName: req.body.categoryName });
 
       let newRecipe = await Recipe.create(recipe);
+      // push - append
+      // unshift - starting
       await category.recipes.unshift(newRecipe);
       await category.save();
 
@@ -52,14 +54,16 @@ const updateRecipe = async (req, res) => {
         description: req.body.description,
       };
       if (!recipe) {
-        res.send({ error: true, message: "No recipe updates!" });
+        res.send({ error: true, message: "No recipe details found!" });
       } else {
         let recipeId = req.params.recipeId;
         
         let updatedRecipe = await Recipe.findById(recipeId, (err, doc)=>{
             if (!err && doc) {
+              // updated values
                 doc = recipe;
-                await doc.save();
+                // interaction with db
+                await doc.save(); 
             }
         });
   

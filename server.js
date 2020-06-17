@@ -2,15 +2,16 @@ const express = require("express");
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
 const recipeRoutes = require("./router/recipeRouter");
 
 // for recipe
-app.use("/user/:userId/category/", recipeRoutes);
+app.use("/:userId/", recipeRoutes);
 
 app.get("*", (req, res) => {
   res.send("app started!");
 });
 
-app.listen(3000, () => {
-  console.log("app started @" + 3000);
+app.listen(PORT, () => {
+  console.log("app started @" + PORT);
 });
