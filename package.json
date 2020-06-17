@@ -1,0 +1,24 @@
+{
+  "name": "recipe-book",
+  "version": "1.0.0",
+  "description": "Record your innovative recipes and share with your friends!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Charugoyal3/Recipe-Book.git"
+  },
+  "author": "Charu Goyal, Muskaan Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Charugoyal3/Recipe-Book/issues"
+  },
+  "homepage": "https://github.com/Charugoyal3/Recipe-Book#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.19"
+  }
+}
