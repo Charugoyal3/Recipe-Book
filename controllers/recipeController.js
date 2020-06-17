@@ -1,26 +1,26 @@
 const Recipe = require("../models/recipe");
 const Category = require("../models/category");
 
-const getAllRecipes = (req, res) => {
+const getAllRecipes = async (req, res) => {
   try {
-    let recipes = Recipe.find();
+    let recipes = await Recipe.find();
     if (recipes) res.send({ error: false, recipes: recipes });
   } catch (error) {
     res.send({ error: true, message: error });
   }
 };
 
-const getRecipe = (req, res) => {
+const getRecipe = async (req, res) => {
   try {
     let recipeId = req.params.recipeId;
-    let recipe = Recipe.findOne({ _id: recipeId });
+    let recipe = await Recipe.findOne({ _id: recipeId });
     if (recipe) res.send({ error: false, recipe: recipe });
   } catch (error) {
     res.send({ error: true, message: error });
   }
 };
 
-const postRecipe = (req, res) => {
+const postRecipe = async (req, res) => {
   try {
     let recipe = {
       recipeName: req.body.recipeName,
@@ -30,11 +30,11 @@ const postRecipe = (req, res) => {
     if (!recipe) {
       res.send({ error: true, message: "No recipe found!" });
     } else {
-      let category = Category.findOne({ categoryName: req.body.categoryName });
+      let category = await Category.findOne({ categoryName: req.body.categoryName });
 
-      let newRecipe = Recipe.create(recipe);
-      category.recipes.unshift(newRecipe);
-      category.save();
+      let newRecipe = await Recipe.create(recipe);
+      await category.recipes.unshift(newRecipe);
+      await category.save();
 
       console.log("new recipe created: ", newRecipe);
       res.send({ error: false, recipe: newRecipe });
@@ -44,7 +44,7 @@ const postRecipe = (req, res) => {
   }
 };
 
-const updateRecipe = (req, res) => {
+const updateRecipe = async (req, res) => {
   try {
     let recipe = {
         recipeName: req.body.recipeName,
@@ -56,7 +56,7 @@ const updateRecipe = (req, res) => {
       } else {
         let recipeId = req.params.recipeId;
         
-        let updatedRecipe = Recipe.findById(recipeId, (err, doc)=>{
+        let updatedRecipe = await Recipe.findById(recipeId, (err, doc)=>{
             if (!err && doc) {
                 doc = recipe;
                 await doc.save();
@@ -72,12 +72,12 @@ const updateRecipe = (req, res) => {
 };
 
 
-const deleteRecipe = (req,res) =>{
+const deleteRecipe = async (req,res) =>{
     const categoryId = req.params.categoryId;
     const recipeId = req.body.recipeId;
 
     try {
-        Recipe.findByIdAndDelete(recipeId, (err, recipe) => {
+        await Recipe.findByIdAndDelete(recipeId, (err, recipe) => {
             if (!err) res.redirect("/" + categoryId + "/recipes");
         });
     } catch (err) {
