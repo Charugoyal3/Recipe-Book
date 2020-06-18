@@ -17,9 +17,9 @@ router.get("/recipe/:recipeId", getRecipe);
 router.post("/recipe", postRecipe);
 
 // update
-router.put("/recipe", updateRecipe);
+router.put("/recipe/:recipeId", updateRecipe);
 
 // delete
-router.delete("/recipe", deleteRecipe);
+router.delete("/recipe/:recipeId", deleteRecipe);
 
 module.exports = router;
