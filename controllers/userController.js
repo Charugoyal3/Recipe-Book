@@ -28,7 +28,7 @@ const postUsers = async (req, res) => {
             picture: req.body.picture,
             biography: req.body.bio,
         };
-
+        
         let newUser = await User.create(user);
         await newUser.save();
         console.log("new user created: ", newUser);
@@ -65,7 +65,7 @@ const updateUsers = async (req, res) => {
             let updatedUser = await User.findById(userId, (err, response) => {
                 if (!err && response) {
                     response = user;
-                    await response.save();
+                    response.save();
                 }
             });
             res.status(302);
