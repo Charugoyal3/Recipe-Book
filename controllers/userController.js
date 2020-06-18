@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user');
 
 const getUsers = async (req, res) => {
     try {
@@ -28,7 +28,7 @@ const postUsers = async (req, res) => {
             picture: req.body.picture,
             biography: req.body.bio,
         };
-        
+
         let newUser = await User.create(user);
         await newUser.save();
         console.log("new user created: ", newUser);

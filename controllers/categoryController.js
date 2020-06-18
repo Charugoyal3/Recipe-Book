@@ -42,12 +42,8 @@ const postCategory = async (req, res) => {
         };
         if (!category) {
           res.send({ error: true, message: "No category found!" });
-        } else {
-          let category = await Category.findOne({
-            categoryName: req.body.categoryName,
-          });
-    
-          let newCategory = await category.create(category);
+        } 
+            let newCategory = await category.create(category);
           // push - append
           // unshift - starting
           await category.unshift(newcategory);
@@ -55,8 +51,8 @@ const postCategory = async (req, res) => {
     
           console.log("new category created: ", newCategory);
           res.send({ error: false, category: newCategory });
-        }
-      } catch (error) {
+        
+    } catch (error) {
         res.send({ error: true, message: error });
       }
 
