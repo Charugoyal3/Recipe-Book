@@ -37,7 +37,7 @@ const getCategory = async (req, res) => {
 
 const postCategory = async (req, res) => {
   try {
-    console.log("here", req.body);
+    console.log("here", req);
 
     let category = {
       categoryName: req.body.categoryName,
@@ -70,7 +70,7 @@ const updateCategory = async (req, res) => {
     } else {
       let categoryId = req.params.categoryId;
 
-      let updatedCategory = await Recipe.findById(
+      let updatedCategory = await Category.findById(
         categoryId,
         async (err, response) => {
           if (!err && response) {
