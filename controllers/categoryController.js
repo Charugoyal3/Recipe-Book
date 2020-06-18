@@ -1,5 +1,4 @@
 const Category = require('../models/category');
-const Recipe = require('../models/recipe');
 
 const getAllCategory = async (req, res) => {
     try {
@@ -20,7 +19,7 @@ const getAllCategory = async (req, res) => {
 const getCategory = async (req, res) => {
     try {
         let categoryId = req.params.id;
-        let category = await Recipe.findOne({
+        let category = await Category.findOne({
             _id: categoryId
         });
         if (category) res.send({
@@ -43,11 +42,10 @@ const postCategory = async (req, res) => {
         if (!category) {
           res.send({ error: true, message: "No category found!" });
         } 
-            let newCategory = await category.create(category);
-          // push - append
-          // unshift - starting
-          await category.unshift(newcategory);
-          await category.save();
+            let newCategory = await Category.create(category);
+            // push - append
+            // unshift - starting
+            await category.save();
     
           console.log("new category created: ", newCategory);
           res.send({ error: false, category: newCategory });
@@ -71,7 +69,7 @@ const updateCategory = async (req, res) => {
         } else {
             let categoryId = req.params.categoryId;
 
-            let updatedCategory = await Recipe.findById(categoryId, async (err, response) => {
+            let updatedCategory = await Category.findById(categoryId, async (err, response) => {
                 if (!err && response) {
                     // updated values
                     response = recipe;
