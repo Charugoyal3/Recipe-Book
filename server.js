@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
 const PORT = process.env.port || 5000;
@@ -9,6 +10,7 @@ const userRouter = require("./router/userRouter");
 const categoryRouter = require("./router/categoryRouter");
 const recipeRouter = require("./router/recipeRouter");
 
+app.use(bodyParser.json());
 //for category
 app.use("/category", categoryRouter);
 

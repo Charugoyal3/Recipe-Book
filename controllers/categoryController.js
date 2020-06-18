@@ -37,7 +37,7 @@ const getCategory = async (req, res) => {
 
 const postCategory = async (req, res) => {
   try {
-    console.log("here", req);
+    console.log("here", req.body);
 
     let category = {
       categoryName: req.body.categoryName,
