@@ -3,13 +3,14 @@ const express = require("express");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const recipeRoutes = require("./router/recipeRouter");
+
+const recipeRouter = require("./router/recipeRouter");
 
 // for recipe
-app.use("/:userId/", recipeRoutes);
+app.use("/:userId/", recipeRouter);
 
 //for users
-app.use("/users/",userRouter);
+app.use("/users/", userRouter);
 
 app.get("*", (req, res) => {
   res.send("app started!");
