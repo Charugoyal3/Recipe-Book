@@ -7,14 +7,14 @@ const {
   deleteRecipe,
 } = require("../controllers/recipeController");
 
+// post
+router.post("/recipe", postRecipe);
+
 // get ALL
 router.get("/recipe", getAllRecipes);
 
 // get One
 router.get("/recipe/:recipeId", getRecipe);
-
-// post
-router.post("/recipe", postRecipe);
 
 // update
 router.put("/recipe/:recipeId", updateRecipe);

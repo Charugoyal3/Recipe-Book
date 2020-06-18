@@ -1,25 +1,22 @@
 const express = require("express");
-
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.port || 5000;
+
+require("./database/database");
 
 const userRouter = require("./router/userRouter");
-
 const categoryRouter = require("./router/categoryRouter");
-
 const recipeRouter = require("./router/recipeRouter");
 
-
-// for recipe
-app.use("/:userId/", recipeRouter);
+//for category
+app.use("/category", categoryRouter);
 
 //for users
-app.use("/users/", userRouter);
+app.use("/users", userRouter);
 
-//for category
-app.use("/category/", categoryRouter);
-
+// for recipe
+app.use("/", recipeRouter);
 
 app.get("*", (req, res) => {
   res.send("App started!");
