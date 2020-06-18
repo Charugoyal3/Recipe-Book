@@ -1,5 +1,4 @@
 const Category = require("../models/category");
-const Recipe = require("../models/recipe");
 
 const getAllCategory = async (req, res) => {
   try {
