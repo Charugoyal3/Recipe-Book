@@ -78,12 +78,14 @@ const updateRecipe = async (req, res) => {
 };
 
 const deleteRecipe = async (req, res) => {
-  const categoryId = req.params.categoryId;
-  const recipeId = req.body.recipeId;
+  const recipeId = req.params.recipeId;
 
   try {
     await Recipe.findByIdAndDelete(recipeId, (err, recipe) => {
-      if (!err) res.redirect("/" + categoryId + "/recipes");
+      if (!err) {
+        console.log(recipe);
+        res.redirect("/recipes");
+      }
     });
   } catch (err) {
     res.send("Couldn't delete Recipe");
