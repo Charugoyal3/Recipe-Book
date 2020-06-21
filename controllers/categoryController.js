@@ -70,9 +70,7 @@ const updateCategory = async (req, res) => {
     } else {
       let categoryId = req.params.categoryId;
 
-      let updatedCategory = await Category.findById(
-        categoryId,
-        async (err, response) => {
+      let updatedCategory = await Category.findById(categoryId,async (err, response) => {
           if (!err && response) {
             // updated values
             response = recipe;
