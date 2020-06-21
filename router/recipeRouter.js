@@ -11,7 +11,7 @@ const {
 router.post("/recipe", postRecipe);
 
 // get ALL
-router.get("/recipe", getAllRecipes);
+router.get("/recipes", getAllRecipes);
 
 // get One
 router.get("/recipe/:recipeId", getRecipe);
