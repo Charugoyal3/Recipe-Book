@@ -60,14 +60,20 @@ const updateRecipe = async (req, res) => {
     } else {
       let recipeId = req.params.recipeId;
 
-      let updatedRecipe = await Recipe.findById(recipeId, async (err, doc) => {
-        if (!err && doc) {
-          // updated values
-          doc = recipe;
-          // interaction with db
-          await doc.save();
+      let updatedRecipe = await Recipe.findByIdAndUpdate(
+        recipeId,
+        {
+          recipeName: recipe.recipeName,
+          picture: recipe.picture,
+          description: recipe.description,
+        },
+        (err, doc) => {
+          if (!err && doc) {
+            // updated values
+            // console.log("updated doc", doc);
+          }
         }
-      });
+      );
 
       console.log("recipe updated: ", updatedRecipe);
       res.send({ error: false, recipe: updatedRecipe });
