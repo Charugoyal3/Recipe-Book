@@ -63,7 +63,7 @@ const updateUsers = async (req, res) => {
       });
     } else {
       let userId = req.params.userId;
-      let updatedUser = await User.findById(userId, (err, response) => {
+      let updatedUser = await User.findByIdAndUpdate(userId, (err, response) => {
         if (!err && response) {
           response = user;
           response.save();
@@ -89,7 +89,7 @@ const deleteUsers = async (req, res) => {
 
   try {
     await User.findByIdAndDelete(userId, (err, user) => {
-      if (!err) res.redirect("/" + userId + "/users");
+      if (!err) res.redirect("/users");
     });
   } catch (error) {
     res.send("Couldn't delete User");

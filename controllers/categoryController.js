@@ -42,14 +42,23 @@ const postCategory = async (req, res) => {
     };
 
     if (!category) {
-      res.send({ error: true, message: "No category found!" });
+      res.send({
+        error: true,
+        message: "No category found!"
+      });
     }
     let newCategory = await Category.create(category);
 
     console.log("new category created: ", newCategory);
-    res.send({ error: false, category: newCategory });
+    res.send({
+      error: false,
+      category: newCategory
+    });
   } catch (error) {
-    res.send({ error: true, message: error });
+    res.send({
+      error: true,
+      message: error
+    });
   }
 };
 
@@ -66,7 +75,7 @@ const updateCategory = async (req, res) => {
     } else {
       let categoryId = req.params.categoryId;
 
-      let updatedCategory = await Category.findById(
+      let updatedCategory = await Category.findByIdAndUpdate(
         categoryId,
         (err, response) => {
           if (!err && response) {
@@ -97,7 +106,7 @@ const deleteCategory = async (req, res) => {
   const categoryId = req.params.categoryId;
   try {
     await Category.findByIdAndDelete(categoryId, (err, category) => {
-      if (!err) res.redirect("/" + categoryId);
+      if (!err) res.redirect("/category");
     });
   } catch (err) {
     res.send("Couldn't delete Category");

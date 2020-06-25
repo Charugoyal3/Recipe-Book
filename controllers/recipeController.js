@@ -60,7 +60,7 @@ const updateRecipe = async (req, res) => {
     } else {
       let recipeId = req.params.recipeId;
 
-      let updatedRecipe = await Recipe.findById(recipeId, async (err, doc) => {
+      let updatedRecipe = await Recipe.findByIdAndUpdate(recipeId, async (err, doc) => {
         if (!err && doc) {
           // updated values
           doc = recipe;
