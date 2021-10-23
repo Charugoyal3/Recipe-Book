@@ -1,3 +1,3 @@
 # Recipe-Book
 
-Record your innovative recipes and share with friends!
+Record innovative recipes and share with your friends!
